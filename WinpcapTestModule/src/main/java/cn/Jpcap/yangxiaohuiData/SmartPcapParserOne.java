@@ -1,7 +1,7 @@
 package cn.Jpcap.yangxiaohuiData;
 
 /**
- * Created by lenovo on 2017/12/18.
+ * Created by lenovo on 2018/1/9.
  */
 import java.net.InetAddress;
 import jpcap.*;
@@ -11,29 +11,9 @@ import jpcap.packet.UDPPacket;
 import jpcap.packet.*;
 import java.util.*;
 
-class PacketInfo
-{
-    String src_ip;
-    String dst_ip;
-    String time;
-    String flag;
-    int src_port;
-    int dst_port;
-    int pro;
-    int id;
-    long seq;
-    long ack;
 
-    public PacketInfo()
-    {
-        src_ip = new String();
-        dst_ip = new String();
-        time = new String();
-        flag = new String();
-    }
-}
 
-public class SmartPcapParser {
+public class SmartPcapParserOne {
 
 
     public Boolean ip_check(String ip1, String ip2){
@@ -256,16 +236,11 @@ public class SmartPcapParser {
                 }
 
                 if(only_parse){
-
+                    System.out.print(packet_info.time+"."+packet.usec+" ip.id:"+packet_info.id+" "+pro_name[packet_info.pro] + " " + packet_info.src_ip + ":" + packet_info.src_port + " -> " + packet_info.dst_ip + ":" + packet_info.dst_port);
                     if (6 == ippacket.protocol){
-                        System.out.print(packet_info.time+" "+packet_info.id+" "+pro_name[packet_info.pro] + " " + packet_info.src_ip + " " + packet_info.src_port + " " + packet_info.dst_ip + " " + packet_info.dst_port+" ");
-                        System.out.println(packet_info.flag + " " + packet_info.seq + " " + packet_info.ack);
-//                        System.out.print(packet_info.time+"."+packet.usec+" ip.id:"+packet_info.id+" "+pro_name[packet_info.pro] + " " + packet_info.src_ip + ":" + packet_info.src_port + " -> " + packet_info.dst_ip + ":" + packet_info.dst_port);
-//                        System.out.println(" tcp.flags:" + packet_info.flag + " seq:" + packet_info.seq + " ack:" + packet_info.ack);
+                        System.out.println(" tcp.flags:" + packet_info.flag + " seq:" + packet_info.seq + " ack:" + packet_info.ack);
                     }
                     else{
-                        System.out.println(packet_info.time+" "+packet_info.id+" "+pro_name[packet_info.pro] + " " + packet_info.src_ip + " " + packet_info.src_port + " " + packet_info.dst_ip + " " + packet_info.dst_port);
-//                      System.out.println(packet_info.time+"."+packet.usec+" ip.id:"+packet_info.id+" "+pro_name[packet_info.pro] + " " + packet_info.src_ip + ":" + packet_info.src_port + " -> " + packet_info.dst_ip + ":" + packet_info.dst_port);
                     }
                 }
             }catch(Exception e1){
